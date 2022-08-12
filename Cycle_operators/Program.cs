@@ -10,3 +10,24 @@
 Выходные данные
 В выходной файл OUTPUT.TXT выведите минимальное количество монет, которые нужно перевернуть.
 */
+
+Console.Write("\nВведите число монеток: ");
+int n = Convert.ToInt32(Console.ReadLine());
+int[] coins = new int[n];
+for (int i = 0; i < coins.Length; i++)
+{
+    coins[i] = new Random().Next(0, 2);
+}
+Console.WriteLine("\nИсходное положение монеток: " + string.Join(", ", coins));
+int count = 0;
+for (int i = 0; i < coins.Length; i++)
+{
+    if (coins[i] == 0)
+    {
+        coins[i]++;
+        count++;
+    }
+}
+Console.WriteLine("Итоговое положение монеток: " + string.Join(", ", coins));
+Console.WriteLine("Количество перевёрнутых монеток: " + count);
+Console.WriteLine();
