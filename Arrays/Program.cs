@@ -9,7 +9,7 @@
 Если таких значений несколько, следует вывести наименьшее среди них.
 */
 
-Console.WriteLine("Введите количество элементов массива: ");
+Console.Write("\nВведите количество элементов массива: ");
 int size = Convert.ToInt32(Console.ReadLine());
 int[] array = new int[size];
 for (int i = 0; i < size; i++)
@@ -17,7 +17,7 @@ for (int i = 0; i < size; i++)
     array[i] = new Random().Next(1, 100);
 }
 Console.WriteLine("Начальный массив: [" + string.Join(", ", array) + "]");
-Console.WriteLine("Введите число: ");
+Console.Write("Введите число: ");
 int X = Convert.ToInt32(Console.ReadLine());
 int CloseInSize(int[] array, int X)
 {
@@ -29,11 +29,11 @@ int CloseInSize(int[] array, int X)
     {
         for (int j = 0; j < tempArray.Length - 1; j++)
         {
-            if (array[j] > array[j + 1])
+            if (tempArray[j] > tempArray[j + 1])
             {
-                int temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
+                int temp = tempArray[j];
+                tempArray[j] = tempArray[j + 1];
+                tempArray[j + 1] = temp;
             }
         }
     }
@@ -49,14 +49,16 @@ int CloseInSize(int[] array, int X)
     int closeInSize = 0;
     if (indexX == tempArray.Length - 1)
         closeInSize = tempArray[indexX - 1];
+    if (indexX == 0)
+        closeInSize = tempArray[indexX + 1];
     int closeInSize2 = 0;
-    if (indexX != tempArray.Length - 1)
+    if (indexX != tempArray.Length - 1 && indexX != 0)
     {
         closeInSize = tempArray[indexX - 1];
         closeInSize2 = tempArray[indexX + 1];
     }
-    if (closeInSize > closeInSize2) return closeInSize;
-    if (closeInSize < closeInSize2) return closeInSize = closeInSize2;
+    if (closeInSize > closeInSize2) closeInSize = closeInSize2;
+    if (closeInSize < closeInSize2) return closeInSize;
     if (closeInSize == closeInSize2) return closeInSize;
 
     return closeInSize;
